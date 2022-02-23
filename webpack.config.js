@@ -22,8 +22,22 @@ module.exports = {
     // loaders - turns non js files into the modules (.html, svg, .css ...)
     module: {
         rules: [
+            // css
             {test: /\.css$/, use: ['style-loader', 'css-loader']},
-            {test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: 'asset/resource'}
+
+            // images
+            {test: /\.(svg|ico|png|webp|jpg|gif|jpeg)$/, type: 'asset/resource'},
+
+            // js for babel
+            {test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+            }
     ],
     },
 
